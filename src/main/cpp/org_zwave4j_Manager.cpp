@@ -731,6 +731,16 @@ JNIEXPORT void JNICALL Java_org_zwave4j_Manager_setNodeManufacturerName
 
 /*
  * Class:     org_zwave4j_Manager
+ * Method:    addAssociation
+ */
+JNIEXPORT void JNICALL Java_org_zwave4j_Manager_addAssociation
+  (JNIEnv * env, jobject object, jlong homeId, jshort nodeId, jshort groupIdx, jshort targetNodeId)
+{
+    OpenZWave::Manager::Get()->AddAssociation( homeId, nodeId, groupIdx, targetNodeId );
+}
+
+/*
+ * Class:     org_zwave4j_Manager
  * Method:    testNetworkNode
  */
 JNIEXPORT void JNICALL Java_org_zwave4j_Manager_testNetworkNode
