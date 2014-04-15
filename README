@@ -31,6 +31,7 @@ Build preparations:
     'openZWaveLibFile' - path to compiled OpenZWave library object file, needed for linking.
     'openZWaveConfigDir' - path to OpenZWave devices configurations directory, needed for OpenZWave library in runtime.
     'zWaveControllerPort' - path to serial device, which Z-Wave controller is connected to, e.g. '//./COM1' for Windows or '/dev/ttyUSB0' for Linux.
+5. Make sure JAVA_HOME environment variable is set (for C++ compiler to find JNI header files).
 
 Build:
 
