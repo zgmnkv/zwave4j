@@ -60,6 +60,9 @@ public class Main {
                     case DRIVER_RESET:
                         System.out.println("Driver reset");
                         break;
+                    case DRIVER_REMOVED:
+                        System.out.println("Driver removed");
+                        break;
                     case AWAKE_NODES_QUERIED:
                         System.out.println("Awake nodes queried");
                         break;

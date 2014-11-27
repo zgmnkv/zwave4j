@@ -89,6 +89,9 @@ jobject getNotificationType(JNIEnv * env, OpenZWave::Notification::NotificationT
 	case OpenZWave::Notification::Type_DriverFailed:
 		name = "DRIVER_FAILED";
 		break;
+	case OpenZWave::Notification::Type_DriverRemoved:
+		name = "DRIVER_REMOVED";
+		break;
 	case OpenZWave::Notification::Type_DriverReset:
 		name = "DRIVER_RESET";
 		break;
