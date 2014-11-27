@@ -75,9 +75,9 @@ public class Notification {
         return aByte;
     }
 
-    public short getNotification() {
+    public NotificationCode getNotification() {
         assert NotificationType.NOTIFICATION.equals(type);
-        return aByte;
+        return NotificationCode.getNotificationCode(aByte);
     }
 
     public short getByte() {
