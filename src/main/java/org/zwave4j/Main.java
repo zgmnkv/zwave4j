@@ -60,6 +60,9 @@ public class Main {
                     case DRIVER_RESET:
                         System.out.println("Driver reset");
                         break;
+                    case DRIVER_REMOVED:
+                        System.out.println("Driver removed");
+                        break;
                     case AWAKE_NODES_QUERIED:
                         System.out.println("Awake nodes queried");
                         break;
@@ -231,7 +234,11 @@ public class Main {
                         ));
                         break;
                     case NOTIFICATION:
-                        System.out.println("Notification");
+                        System.out.println(String.format("Notification\n" +
+                                "\tnode id: %d\n" +
+                                "\tcode: %s\n",
+                                notification.getNodeId(),
+                                notification.getNotification().toString()));
                         break;
                     default:
                         System.out.println(notification.getType().name());
@@ -250,19 +257,31 @@ public class Main {
         String line;
         do {
             line = br.readLine();
-            if (!ready || line == null) {
+            if (line == null) {
                 continue;
             }
 
             switch (line) {
                 case "on":
-                    manager.switchAllOn(homeId);
+                    if (ready)
+                        manager.switchAllOn(homeId);
+                    else
+                        System.out.println("Home is not ready");
                     break;
                 case "off":
+                    if (ready)
+                        manager.switchAllOff(homeId);
+                    else
+                        System.out.println("Home is not ready");
+                    break;
+                case "fon":
+                    manager.switchAllOn(homeId);
+                    break;
+                case "foff":
                     manager.switchAllOff(homeId);
                     break;
             }
-        } while(line != null && !line.equals("q"));
+        } while (line != null && !line.equals("q"));
 
 
         br.close();

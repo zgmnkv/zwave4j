@@ -89,6 +89,9 @@ jobject getNotificationType(JNIEnv * env, OpenZWave::Notification::NotificationT
 	case OpenZWave::Notification::Type_DriverFailed:
 		name = "DRIVER_FAILED";
 		break;
+	case OpenZWave::Notification::Type_DriverRemoved:
+		name = "DRIVER_REMOVED";
+		break;
 	case OpenZWave::Notification::Type_DriverReset:
 		name = "DRIVER_RESET";
 		break;
@@ -114,6 +117,37 @@ jobject getNotificationType(JNIEnv * env, OpenZWave::Notification::NotificationT
 
 	jclass clazz = findClass(env, "org/zwave4j/NotificationType");
 	return env->GetStaticObjectField(clazz, env->GetStaticFieldID(clazz, name, "Lorg/zwave4j/NotificationType;"));
+}
+
+jobject getNotificationCode(JNIEnv * env, OpenZWave::Notification::NotificationCode ozwNotificationCode)
+{
+	const char * name;
+	switch(ozwNotificationCode)
+	{
+	case OpenZWave::Notification::Code_MsgComplete:
+		name = "MSG_COMPLETE";
+		break;
+	case OpenZWave::Notification::Code_Timeout:
+		name = "TIMEOUT";
+		break;
+	case OpenZWave::Notification::Code_NoOperation:
+		name = "NO_OPERATION";
+		break;
+	case OpenZWave::Notification::Code_Awake:
+		name = "AWAKE";
+		break;
+	case OpenZWave::Notification::Code_Sleep:
+		name = "SLEEP";
+		break;
+	case OpenZWave::Notification::Code_Dead:
+		name = "DEAD";
+		break;
+	case OpenZWave::Notification::Code_Alive:
+		name = "ALIVE";
+		break;
+	}
+	jclass clazz = findClass(env, "org/zwave4j/NotificationCode");
+	return env->GetStaticObjectField(clazz, env->GetStaticFieldID(clazz, name, "Lorg/zwave4j/NotificationCode;"));
 }
 
 jobject getValueType(JNIEnv * env, OpenZWave::ValueID::ValueType ozwValueType)
