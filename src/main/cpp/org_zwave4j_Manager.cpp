@@ -1010,7 +1010,7 @@ JNIEXPORT jlong JNICALL Java_org_zwave4j_Manager_getNodeNeighbors
 	}
 	env->ReleaseShortArrayElements(neighborsArray, neighborsArrayElements, 0);
 
-	delete ozwNodeNeighbors;
+	delete [] ozwNodeNeighbors;
 
 	env->CallVoidMethod(
 		nodeNeighbors,
@@ -1591,7 +1591,7 @@ JNIEXPORT jboolean JNICALL Java_org_zwave4j_Manager_getValueAsRaw
 	}
 	env->ReleaseShortArrayElements(valueArray, valueElements, 0);
 
-	delete ozwValue;
+	delete [] ozwValue;
 
 	env->CallVoidMethod(
 		value,
@@ -2022,7 +2022,7 @@ JNIEXPORT jlong JNICALL Java_org_zwave4j_Manager_getAssociations
 	}
 	env->ReleaseShortArrayElements(associationsArray, neighborsArrayElements, 0);
 
-	delete ozwAssociations;
+	delete [] ozwAssociations;
 
 	env->CallVoidMethod(
 		associations,
@@ -2301,7 +2301,7 @@ JNIEXPORT jshort JNICALL Java_org_zwave4j_Manager_getAllScenes
 	}
 	env->ReleaseShortArrayElements(scenesIdsArray, neighborsArrayElements, 0);
 
-	delete ozwScenesIds;
+	delete [] ozwScenesIds;
 
 	env->CallVoidMethod(
 		sceneIds,
