@@ -2064,23 +2064,23 @@ JNIEXPORT jstring JNICALL Java_org_zwave4j_Manager_getGroupLabel
 /*
  * Class:     org_zwave4j_Manager
  * Method:    addAssociation
- * Signature: (JSSS)V
+ * Signature: (JSSSS)V
  */
 JNIEXPORT void JNICALL Java_org_zwave4j_Manager_addAssociation
-  (JNIEnv * env, jobject object, jlong homeId, jshort nodeId, jshort groupIdx, jshort targetNodeId)
+  (JNIEnv * env, jobject object, jlong homeId, jshort nodeId, jshort groupIdx, jshort targetNodeId, jshort instance)
 {
-    OpenZWave::Manager::Get()->AddAssociation(getUint32(homeId), getUint8(nodeId), getUint8(groupIdx), getUint8(targetNodeId));
+    OpenZWave::Manager::Get()->AddAssociation(getUint32(homeId), getUint8(nodeId), getUint8(groupIdx), getUint8(targetNodeId), getUint8(instance));
 }
 
 /*
  * Class:     org_zwave4j_Manager
  * Method:    removeAssociation
- * Signature: (JSSS)V
+ * Signature: (JSSSS)V
  */
 JNIEXPORT void JNICALL Java_org_zwave4j_Manager_removeAssociation
-  (JNIEnv * env, jobject object, jlong homeId, jshort nodeId, jshort groupIdx, jshort targetNodeId)
+  (JNIEnv * env, jobject object, jlong homeId, jshort nodeId, jshort groupIdx, jshort targetNodeId, jshort instance)
 {
-    OpenZWave::Manager::Get()->RemoveAssociation(getUint32(homeId), getUint8(nodeId), getUint8(groupIdx), getUint8(targetNodeId));
+    OpenZWave::Manager::Get()->RemoveAssociation(getUint32(homeId), getUint8(nodeId), getUint8(groupIdx), getUint8(targetNodeId), getUint8(instance));
 }
 
 /*

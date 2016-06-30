@@ -267,10 +267,19 @@ public class Manager {
 
     public native String getGroupLabel(long homeId, short nodeId, short groupIdx);
 
-    public native void addAssociation(long homeId, short nodeId, short groupIdx, short targetNodeId);
+    public native void addAssociation(long homeId, short nodeId, short groupIdx, short targetNodeId, short instance);
 
-    public native void removeAssociation(long homeId, short nodeId, short groupIdx, short targetNodeId);
+    public void addAssociation(long homeId, short nodeId, short groupIdx, short targetNodeId)
+    {
+	addAssociation(homeId, nodeId, groupIdx, targetNodeId, (short)0);
+    }
 
+    public native void removeAssociation(long homeId, short nodeId, short groupIdx, short targetNodeId, short instance);
+
+    public void removeAssociation(long homeId, short nodeId, short groupIdx, short targetNodeId)
+    {
+	removeAssociation(homeId, nodeId, groupIdx, targetNodeId, (short)0);
+    }
 
     //Notifications
     public native void addWatcher(NotificationWatcher notificationWatcher, Object context);
