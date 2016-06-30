@@ -1,5 +1,6 @@
 #include <Manager.h>
 #include <Notification.h>
+#include <Group.h>
 #include <org_zwave4j_Manager.h>
 #include "init.h"
 
@@ -2027,6 +2028,41 @@ JNIEXPORT jlong JNICALL Java_org_zwave4j_Manager_getAssociations
 	    neighborsArrayElements[i] = getJshort(ozwAssociations[i]);
 	}
 	env->ReleaseShortArrayElements(associationsArray, neighborsArrayElements, 0);
+
+	delete [] ozwAssociations;
+
+	env->CallVoidMethod(
+		associations,
+		env->GetMethodID(findClass(env, "java/util/concurrent/atomic/AtomicReference"), "set", "(Ljava/lang/Object;)V"),
+		associationsArray
+	);
+
+	return associationsAmount;
+}
+
+/*
+ * Class:     org_zwave4j_Manager
+ * Method:    getAssociationsWithInstance
+ * Signature: (JSSLjava/util/concurrent/atomic/AtomicReference;)J
+ */
+JNIEXPORT jlong JNICALL Java_org_zwave4j_Manager_getAssociationsWithInstance
+  (JNIEnv * env, jobject object, jlong homeId, jshort nodeId, jshort groupIdx, jobject associations)
+{
+    OpenZWave::InstanceAssociation * ozwAssociations;
+
+    jlong associationsAmount = getJlong(OpenZWave::Manager::Get()->GetAssociations(getUint32(homeId), getUint8(nodeId), getUint8(groupIdx), &ozwAssociations));
+
+    jclass associationClass = findClass(env, "org/zwave4j/InstanceAssociation");
+
+    jobjectArray associationsArray = env->NewObjectArray(getJsize(associationsAmount), associationClass, NULL);
+	for (uint32 i = 0; i < associationsAmount; ++i)
+	{
+	    jobject association = env->NewObject(associationClass,
+	  	env->GetMethodID(associationClass, "<init>", "(SS)V"),
+		getJshort(ozwAssociations[i].m_nodeId),
+		getJshort(ozwAssociations[i].m_instance));
+	    env->SetObjectArrayElement(associationsArray, getJsize(i), association);
+	}
 
 	delete [] ozwAssociations;
 

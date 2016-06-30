@@ -263,6 +263,8 @@ public class Manager {
 
     public native long getAssociations(long homeId, short nodeId, short groupIdx, AtomicReference<short[]> associations);
 
+    public native long getAssociationsWithInstance(long homeId, short nodeId, short groupIdx, AtomicReference<InstanceAssociation[]> associations);
+
     public native short getMaxAssociations(long homeId, short nodeId, short groupIdx);
 
     public native String getGroupLabel(long homeId, short nodeId, short groupIdx);
