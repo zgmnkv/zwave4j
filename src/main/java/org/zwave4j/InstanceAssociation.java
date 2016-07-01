@@ -1,9 +1,11 @@
 package org.zwave4j;
 
+import java.io.Serializable;
+
 /**
  * @author TEK
  */
-public class InstanceAssociation {
+public class InstanceAssociation implements Serializable {
 
     private short nodeId;
     private short instance;
