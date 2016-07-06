@@ -340,7 +340,7 @@ model {
                         }
                     } else if (targetPlatform.operatingSystem.macOsX) {
                         if (toolChain in Gcc || toolChain in Clang) {
-                            linker.args "-framework", "IOKit", "-framework", "CoreFoundation"
+                            linker.args ""
                         }
                     }
 
@@ -369,7 +369,7 @@ model {
                     cppCompiler.define "DARWIN"
                     cppCompiler.args "-mmacosx-version-min=10.4"
                     cCompiler.args "-mmacosx-version-min=10.4"
-                    linker.args "-mmacosx-version-min=10.4"
+                    linker.args "-mmacosx-version-min=10.4", "-framework", "IOKit", "-framework", "CoreFoundation"
                 }
             }
         }
