@@ -1,5 +1,6 @@
 #include <Manager.h>
 #include <Notification.h>
+#include <Group.h>
 #include <org_zwave4j_Manager.h>
 #include "init.h"
 
@@ -348,12 +349,18 @@ jobject getValueId(JNIEnv * env, OpenZWave::ValueID const * ozwValueId)
 jobject getNotification(JNIEnv * env, OpenZWave::Notification const * ozwNotification)
 {
 	jclass clazz = findClass(env, "org/zwave4j/Notification");
+	OpenZWave::Notification::NotificationType type = ozwNotification->GetType();
+	uint8 event = 0;
+	if (type == OpenZWave::Notification::Type_NodeEvent || type == OpenZWave::Notification::Type_ControllerCommand) {
+	    event = ozwNotification->GetEvent();
+	}
 	return env->NewObject(
 		clazz,
-		env->GetMethodID(clazz, "<init>", "(Lorg/zwave4j/NotificationType;Lorg/zwave4j/ValueId;S)V"),
-		getNotificationType(env, ozwNotification->GetType()),
+		env->GetMethodID(clazz, "<init>", "(Lorg/zwave4j/NotificationType;Lorg/zwave4j/ValueId;SS)V"),
+		getNotificationType(env, type),
 		getValueId(env, &ozwNotification->GetValueID()),
-		getJshort(ozwNotification->GetByte())
+		getJshort(ozwNotification->GetByte()),
+		getJshort(event)
 	);
 }
 
@@ -1010,7 +1017,7 @@ JNIEXPORT jlong JNICALL Java_org_zwave4j_Manager_getNodeNeighbors
 	}
 	env->ReleaseShortArrayElements(neighborsArray, neighborsArrayElements, 0);
 
-	delete ozwNodeNeighbors;
+	delete [] ozwNodeNeighbors;
 
 	env->CallVoidMethod(
 		nodeNeighbors,
@@ -1591,7 +1598,7 @@ JNIEXPORT jboolean JNICALL Java_org_zwave4j_Manager_getValueAsRaw
 	}
 	env->ReleaseShortArrayElements(valueArray, valueElements, 0);
 
-	delete ozwValue;
+	delete [] ozwValue;
 
 	env->CallVoidMethod(
 		value,
@@ -2022,7 +2029,42 @@ JNIEXPORT jlong JNICALL Java_org_zwave4j_Manager_getAssociations
 	}
 	env->ReleaseShortArrayElements(associationsArray, neighborsArrayElements, 0);
 
-	delete ozwAssociations;
+	delete [] ozwAssociations;
+
+	env->CallVoidMethod(
+		associations,
+		env->GetMethodID(findClass(env, "java/util/concurrent/atomic/AtomicReference"), "set", "(Ljava/lang/Object;)V"),
+		associationsArray
+	);
+
+	return associationsAmount;
+}
+
+/*
+ * Class:     org_zwave4j_Manager
+ * Method:    getAssociationsWithInstance
+ * Signature: (JSSLjava/util/concurrent/atomic/AtomicReference;)J
+ */
+JNIEXPORT jlong JNICALL Java_org_zwave4j_Manager_getAssociationsWithInstance
+  (JNIEnv * env, jobject object, jlong homeId, jshort nodeId, jshort groupIdx, jobject associations)
+{
+    OpenZWave::InstanceAssociation * ozwAssociations;
+
+    jlong associationsAmount = getJlong(OpenZWave::Manager::Get()->GetAssociations(getUint32(homeId), getUint8(nodeId), getUint8(groupIdx), &ozwAssociations));
+
+    jclass associationClass = findClass(env, "org/zwave4j/InstanceAssociation");
+
+    jobjectArray associationsArray = env->NewObjectArray(getJsize(associationsAmount), associationClass, NULL);
+	for (uint32 i = 0; i < associationsAmount; ++i)
+	{
+	    jobject association = env->NewObject(associationClass,
+	  	env->GetMethodID(associationClass, "<init>", "(SS)V"),
+		getJshort(ozwAssociations[i].m_nodeId),
+		getJshort(ozwAssociations[i].m_instance));
+	    env->SetObjectArrayElement(associationsArray, getJsize(i), association);
+	}
+
+	delete [] ozwAssociations;
 
 	env->CallVoidMethod(
 		associations,
@@ -2058,23 +2100,23 @@ JNIEXPORT jstring JNICALL Java_org_zwave4j_Manager_getGroupLabel
 /*
  * Class:     org_zwave4j_Manager
  * Method:    addAssociation
- * Signature: (JSSS)V
+ * Signature: (JSSSS)V
  */
 JNIEXPORT void JNICALL Java_org_zwave4j_Manager_addAssociation
-  (JNIEnv * env, jobject object, jlong homeId, jshort nodeId, jshort groupIdx, jshort targetNodeId)
+  (JNIEnv * env, jobject object, jlong homeId, jshort nodeId, jshort groupIdx, jshort targetNodeId, jshort instance)
 {
-    OpenZWave::Manager::Get()->AddAssociation(getUint32(homeId), getUint8(nodeId), getUint8(groupIdx), getUint8(targetNodeId));
+    OpenZWave::Manager::Get()->AddAssociation(getUint32(homeId), getUint8(nodeId), getUint8(groupIdx), getUint8(targetNodeId), getUint8(instance));
 }
 
 /*
  * Class:     org_zwave4j_Manager
  * Method:    removeAssociation
- * Signature: (JSSS)V
+ * Signature: (JSSSS)V
  */
 JNIEXPORT void JNICALL Java_org_zwave4j_Manager_removeAssociation
-  (JNIEnv * env, jobject object, jlong homeId, jshort nodeId, jshort groupIdx, jshort targetNodeId)
+  (JNIEnv * env, jobject object, jlong homeId, jshort nodeId, jshort groupIdx, jshort targetNodeId, jshort instance)
 {
-    OpenZWave::Manager::Get()->RemoveAssociation(getUint32(homeId), getUint8(nodeId), getUint8(groupIdx), getUint8(targetNodeId));
+    OpenZWave::Manager::Get()->RemoveAssociation(getUint32(homeId), getUint8(nodeId), getUint8(groupIdx), getUint8(targetNodeId), getUint8(instance));
 }
 
 /*
@@ -2301,7 +2343,7 @@ JNIEXPORT jshort JNICALL Java_org_zwave4j_Manager_getAllScenes
 	}
 	env->ReleaseShortArrayElements(scenesIdsArray, neighborsArrayElements, 0);
 
-	delete ozwScenesIds;
+	delete [] ozwScenesIds;
 
 	env->CallVoidMethod(
 		sceneIds,
