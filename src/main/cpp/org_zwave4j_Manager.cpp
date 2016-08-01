@@ -349,12 +349,18 @@ jobject getValueId(JNIEnv * env, OpenZWave::ValueID const * ozwValueId)
 jobject getNotification(JNIEnv * env, OpenZWave::Notification const * ozwNotification)
 {
 	jclass clazz = findClass(env, "org/zwave4j/Notification");
+	OpenZWave::Notification::NotificationType type = ozwNotification->GetType();
+	uint8 event = 0;
+	if (type == OpenZWave::Notification::Type_NodeEvent || type == OpenZWave::Notification::Type_ControllerCommand) {
+	    event = ozwNotification->GetEvent();
+	}
 	return env->NewObject(
 		clazz,
-		env->GetMethodID(clazz, "<init>", "(Lorg/zwave4j/NotificationType;Lorg/zwave4j/ValueId;S)V"),
-		getNotificationType(env, ozwNotification->GetType()),
+		env->GetMethodID(clazz, "<init>", "(Lorg/zwave4j/NotificationType;Lorg/zwave4j/ValueId;SS)V"),
+		getNotificationType(env, type),
 		getValueId(env, &ozwNotification->GetValueID()),
-		getJshort(ozwNotification->GetByte())
+		getJshort(ozwNotification->GetByte()),
+		getJshort(event)
 	);
 }
 

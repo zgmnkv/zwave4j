@@ -8,11 +8,13 @@ public class Notification {
     private NotificationType type;
     private ValueId valueId;
     private short aByte;
+    private short event;
 
-    public Notification(NotificationType type, ValueId valueId, short aByte) {
+    public Notification(NotificationType type, ValueId valueId, short aByte, short event) {
         this.type = type;
         this.valueId = valueId;
         this.aByte = aByte;
+        this.event = event;
     }
 
     public NotificationType getType() {
@@ -38,7 +40,7 @@ public class Notification {
 
     public short getEvent() {
         assert NotificationType.NODE_EVENT.equals(type);
-        return aByte;
+        return event;
     }
 
     public short getButtonId() {
