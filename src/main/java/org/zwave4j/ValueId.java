@@ -1,9 +1,11 @@
 package org.zwave4j;
 
+import java.io.Serializable;
+
 /**
  * @author zagumennikov
  */
-public class ValueId {
+public class ValueId implements Serializable {
 
     private long homeId;
     private short nodeId;
