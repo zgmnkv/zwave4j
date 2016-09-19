@@ -2125,7 +2125,12 @@ JNIEXPORT void JNICALL Java_org_zwave4j_Manager_addWatcher
         env->NewGlobalRef(notificationWatcher),
         env->NewGlobalRef(context)
     );
-    notificationWatchers[std::pair<jobject, jobject>(notificationWatcher, context)] = pair;
+	
+	// This key is deallocated after this scope closes causing numerous issues.
+	//notificationWatchers[std::pair<jobject, jobject>(notificationWatcher, context)] = pair;
+
+	notificationWatchers[*pair] = pair;
+	
     OpenZWave::Manager::Get()->AddWatcher(onNotification, pair);
 }
 
@@ -2138,9 +2143,15 @@ JNIEXPORT void JNICALL Java_org_zwave4j_Manager_removeWatcher
   (JNIEnv * env, jobject object, jobject notificationWatcher, jobject context)
 {
     std::pair<jobject, jobject> * pair = notificationWatchers[std::pair<jobject, jobject>(notificationWatcher, context)];
-    OpenZWave::Manager::Get()->RemoveWatcher(onNotification, pair);
-    env->DeleteGlobalRef(pair->first);
-    env->DeleteGlobalRef(pair->second);
+	notificationWatchers.erase(std::pair<jobject, jobject>(notificationWatcher, context));
+	
+	if (pair->first != NULL)
+		env->DeleteGlobalRef(pair->first);
+	
+	if (pair->second != NULL)
+		env->DeleteGlobalRef(pair->second);
+
+	OpenZWave::Manager::Get()->RemoveWatcher(onNotification, pair);
     delete pair;
 }
 
