@@ -24,6 +24,7 @@ public class Manager {
 
     public static void destroy() {
         destroyNativeManager();
+		instance = null;
     }
 
     private static native void createNativeManager();
@@ -86,6 +87,12 @@ public class Manager {
     public native boolean requestNodeState(long homeId, short nodeId);
 
     public native boolean requestNodeDynamic(long homeId, short nodeId);
+	
+	public native boolean requestNodeNeighborUpdate(long homeId, short nodeId);
+	
+	public native boolean deleteAllReturnRoutes(long homeId, short nodeId);
+	
+	public native boolean assignReturnRoute(long homeId, short nodeId);
 
     public native boolean isNodeListeningDevice(long homeId, short nodeId);
 
@@ -293,6 +300,16 @@ public class Manager {
     public native void resetController(long homeId);
 
     public native void softReset(long homeId);
+	
+	public native boolean addNode(long homeId, boolean secureMode);
+	
+	public native boolean removeNode(long homeId);
+	
+	public native boolean removeFailedNode(long homeId, short nodeId);
+	
+	public native boolean hasNodeFailed(long homeId, short nodeId);
+	
+	public native boolean replaceFailedNode(long homeId, short nodeId);
 
     public native boolean beginControllerCommand(long homeId, ControllerCommand command);
 

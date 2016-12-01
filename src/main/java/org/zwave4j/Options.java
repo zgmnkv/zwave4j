@@ -22,6 +22,7 @@ public class Options {
     }
 
     public static boolean destroy() {
+		instance	= null;
         return destroyNativeOptions();
     }
 
