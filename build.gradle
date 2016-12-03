@@ -71,7 +71,7 @@ task generateOzwVersion(type: Exec) {
 
     workingDir openZWaveDir
     commandLine "make"
-    args "cpp/src/vers.cpp"
+    args "cpp/build/windows/winversion.cpp"
 }
 
 model {
@@ -133,6 +133,14 @@ model {
             }
         }
         clang(Clang) {
+        }
+		
+		visualCpp(VisualCpp) 
+		{
+            // Specify the installDir if Visual Studio cannot be located
+            //installDir "C:/Apps/Microsoft Visual Studio 10.0"
+			installDir "C:/Program Files (x86)/Microsoft Visual Studio 14.0"
+			//installDir "C:/Program Files (x86)/Microsoft Visual Studio 12.0"
         }
     }
 
@@ -200,9 +208,11 @@ model {
                     }
                     cpp(CppSourceSet) {
                         lib library: "hidApi", linkage: "api"
-
+												
                         source {
-                            if (targetPlatform.operatingSystem.windows) {
+                            if (targetPlatform.operatingSystem.windows) 
+							{
+								cppCompiler.args "/D_USRDLL", "/DHIDAPI_EXPORTS", "/D_WINDLL"
                                 srcDir "$openZWaveDir/cpp/hidapi/windows"
                             }
                             include "*.cpp"
@@ -253,7 +263,7 @@ model {
                         srcDir "$openZWaveDir/cpp/src"
                         srcDir "$openZWaveDir/cpp/src/command_classes"
                         srcDir "$openZWaveDir/cpp/src/value_classes"
-                        srcDir "$openZWaveDir/cpp/src/platform"
+                        srcDir "$openZWaveDir/cpp/src/platform/"
                         include "*.cpp"
                     }
 
@@ -271,21 +281,24 @@ model {
                 sources {
                     cpp(CppSourceSet) {
                         lib library: "openZWave", linkage: "api"
-
-                        source {
+                        source {						
+							if (targetPlatform.operatingSystem.windows) {
+                                srcDir "$openZWaveDir/cpp/src/platform/windows"
+                            }
+							else
                             if (targetPlatform.operatingSystem.linux || targetPlatform.operatingSystem.macOsX) {
                                 srcDir "$openZWaveDir/cpp/src/platform/unix"
-                            } else if (targetPlatform.operatingSystem.windows) {
-                                srcDir "$openZWaveDir/cpp/src/platform/windows"
                             }
                             include "*.cpp"
                         }
 
                         exportedHeaders {
+							if (targetPlatform.operatingSystem.windows) {
+                                srcDir "$openZWaveDir/cpp/src/platform/windows"
+                            }
+							else
                             if (targetPlatform.operatingSystem.linux || targetPlatform.operatingSystem.macOsX) {
                                 srcDir "$openZWaveDir/cpp/src/platform/unix"
-                            } else if (targetPlatform.operatingSystem.windows) {
-                                srcDir "$openZWaveDir/cpp/src/platform/windows"
                             }
                             include "*.h"
                         }
@@ -317,7 +330,7 @@ model {
                     lib library: "aes", linkage: "static"
 
                     exportedHeaders {
-                        srcDir generatedNativeHeadersDir
+                        srcDirs generatedNativeHeadersDir
                     }
                 }
             }
@@ -338,6 +351,13 @@ model {
                         if (toolChain in Gcc) {
                             linker.args "-static", "-lsetupapi"
                         }
+						else
+						if (toolChain in VisualCpp)
+						{							
+							//cppCompiler.args "/DWIN32", "/Zi", "/FS", "/EHsc", "/IC:/Program Files (x86)/Microsoft Visual Studio 14.0/VC/INCLUDE", "/IC:/Program Files (x86)/Microsoft Visual Studio 14.0/VC/ATLMFC/INCLUDE", "/IC:/Program Files (x86)/Windows Kits/10/include/10.0.10586.0/ucrt", "/IC:/Program Files (x86)/Windows Kits/NETFXSDK/4.6.1/include/um", "/IC:/Program Files (x86)/Windows Kits/10/include/10.0.10586.0/shared", "/IC:/Program Files (x86)/Windows Kits/10/include/10.0.10586.0/um", "/IC:/Program Files (x86)/Windows Kits/10/include/10.0.10586.0/winrt"
+							//linker.args "/DEBUG", "/LIBPATH:C:/Program Files (x86)/Microsoft Visual Studio 14.0/VC/LIB/amd64","/LIBPATH:C:/Program Files (x86)/Microsoft Visual Studio 14.0/VC/ATLMFC/LIB/amd64","/LIBPATH:C:/Program Files (x86)/Windows Kits/10/lib/10.0.10586.0/ucrt/x64","/LIBPATH:C:/Program Files (x86)/Windows Kits/NETFXSDK/4.6.1/lib/um/x64","/LIBPATH:C:/Program Files (x86)/Windows Kits/10/lib/10.0.10586.0/um/x64"
+						}
+						
                     } else if (targetPlatform.operatingSystem.macOsX) {
                         if (toolChain in Gcc || toolChain in Clang) {
                             linker.args "-framework", "IOKit", "-framework", "CoreFoundation"
@@ -364,6 +384,22 @@ model {
                         linker.args "-Wl,--kill-at"
                     }
                 }
+				else
+				if (toolChain in VisualCpp)
+				{
+					if (targetPlatform.architecture.name == "x86") 
+					{
+						cCompiler.args "/DWIN32", "/D_WINDOWS", "/IC:/Program Files (x86)/Microsoft Visual Studio 14.0/VC/INCLUDE", "/IC:/Program Files (x86)/Microsoft Visual Studio 14.0/VC/ATLMFC/INCLUDE", "/IC:/Program Files (x86)/Windows Kits/10/include/10.0.10586.0/ucrt", "/IC:/Program Files (x86)/Windows Kits/NETFXSDK/4.6.1/include/um", "/IC:/Program Files (x86)/Windows Kits/10/include/10.0.10586.0/shared", "/IC:/Program Files (x86)/Windows Kits/10/include/10.0.10586.0/um", "/IC:/Program Files (x86)/Windows Kits/10/include/10.0.10586.0/winrt"
+						cppCompiler.args "/GS", "/GL", "/Zi", "/O2", "/Zc:inline", "/fp:precise", "/Zc:wchar_t", "/MD", "/DUNICODE", "/Gd", "/DWIN32", "/D_WINDOWS", "/Zi", "/FS", "/EHsc", "/IC:/Program Files (x86)/Microsoft Visual Studio 14.0/VC/INCLUDE", "/IC:/Program Files (x86)/Microsoft Visual Studio 14.0/VC/ATLMFC/INCLUDE", "/IC:/Program Files (x86)/Windows Kits/10/include/10.0.10586.0/ucrt", "/IC:/Program Files (x86)/Windows Kits/NETFXSDK/4.6.1/include/um", "/IC:/Program Files (x86)/Windows Kits/10/include/10.0.10586.0/shared", "/IC:/Program Files (x86)/Windows Kits/10/include/10.0.10586.0/um", "/IC:/Program Files (x86)/Windows Kits/10/include/10.0.10586.0/winrt"
+						linker.args "/DEBUG", "/DYNAMICBASE", "setupapi.lib", "kernel32.lib", "user32.lib", "gdi32.lib", "winspool.lib", "comdlg32.lib", "advapi32.lib", "shell32.lib", "ole32.lib", "oleaut32.lib", "uuid.lib", "odbc32.lib", "odbccp32.lib", "/SUBSYSTEM:WINDOWS", "/MANIFEST", "/LTCG:incremental", "/NXCOMPAT", "/LIBPATH:C:/Program Files (x86)/Microsoft Visual Studio 14.0/VC/LIB","/LIBPATH:C:/Program Files (x86)/Microsoft Visual Studio 14.0/VC/ATLMFC/LIB","/LIBPATH:C:/Program Files (x86)/Windows Kits/10/lib/10.0.10586.0/ucrt/x86","/LIBPATH:C:/Program Files (x86)/Windows Kits/NETFXSDK/4.6.1/lib/um/x86","/LIBPATH:C:/Program Files (x86)/Windows Kits/10/lib/10.0.10586.0/um/x86"
+					}
+					else
+					{
+						cCompiler.args "/DWIN32", "/D_WINDOWS", "/IC:/Program Files (x86)/Microsoft Visual Studio 14.0/VC/INCLUDE", "/IC:/Program Files (x86)/Microsoft Visual Studio 14.0/VC/ATLMFC/INCLUDE", "/IC:/Program Files (x86)/Windows Kits/10/include/10.0.10586.0/ucrt", "/IC:/Program Files (x86)/Windows Kits/NETFXSDK/4.6.1/include/um", "/IC:/Program Files (x86)/Windows Kits/10/include/10.0.10586.0/shared", "/IC:/Program Files (x86)/Windows Kits/10/include/10.0.10586.0/um", "/IC:/Program Files (x86)/Windows Kits/10/include/10.0.10586.0/winrt"
+						cppCompiler.args "/GS", "/GL", "/Zi", "/O2", "/Zc:inline", "/fp:precise", "/Zc:wchar_t", "/MD", "/DUNICODE", "/DWIN32", "/D_WINDOWS", "/Zi", "/FS", "/EHsc", "/IC:/Program Files (x86)/Microsoft Visual Studio 14.0/VC/INCLUDE", "/IC:/Program Files (x86)/Microsoft Visual Studio 14.0/VC/ATLMFC/INCLUDE", "/IC:/Program Files (x86)/Windows Kits/10/include/10.0.10586.0/ucrt", "/IC:/Program Files (x86)/Windows Kits/NETFXSDK/4.6.1/include/um", "/IC:/Program Files (x86)/Windows Kits/10/include/10.0.10586.0/shared", "/IC:/Program Files (x86)/Windows Kits/10/include/10.0.10586.0/um", "/IC:/Program Files (x86)/Windows Kits/10/include/10.0.10586.0/winrt"
+						linker.args "/DEBUG", "/DYNAMICBASE", "setupapi.lib", "kernel32.lib", "user32.lib", "gdi32.lib", "winspool.lib", "comdlg32.lib", "advapi32.lib", "shell32.lib", "ole32.lib", "oleaut32.lib", "uuid.lib", "odbc32.lib", "odbccp32.lib", "/SUBSYSTEM:WINDOWS", "/MANIFEST", "/LTCG:incremental", "/NXCOMPAT", "/LIBPATH:C:/Program Files (x86)/Microsoft Visual Studio 14.0/VC/LIB/amd64","/LIBPATH:C:/Program Files (x86)/Microsoft Visual Studio 14.0/VC/ATLMFC/LIB/amd64","/LIBPATH:C:/Program Files (x86)/Windows Kits/10/lib/10.0.10586.0/ucrt/x64","/LIBPATH:C:/Program Files (x86)/Windows Kits/NETFXSDK/4.6.1/lib/um/x64","/LIBPATH:C:/Program Files (x86)/Windows Kits/10/lib/10.0.10586.0/um/x64"
+					}
+				}
             } else if (targetPlatform.operatingSystem.macOsX) {
                 if (toolChain in Gcc || toolChain in Clang) {
                     cppCompiler.define "DARWIN"
@@ -475,7 +511,7 @@ uploadArchives {
 }
 
 task wrapper(type: Wrapper) {
-    gradleVersion = "2.13"
+    gradleVersion = "3.1"
 }
 
 idea {
