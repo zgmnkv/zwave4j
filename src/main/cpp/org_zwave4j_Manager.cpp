@@ -3059,3 +3059,14 @@ JNIEXPORT void JNICALL Java_org_zwave4j_Manager_getNodeStatistics
         );
     }
 }
+
+/*
+ * Class:     org_zwave4j_Manager
+ * Method:    pressButton
+ * Signature: (Lorg/zwave4j/ValueId;)Z
+ */
+JNIEXPORT jboolean JNICALL Java_org_zwave4j_Manager_replicationSend
+  (JNIEnv * env, jobject object, jlong homeId, jshort nodeId)
+{
+	return getJboolean(OpenZWave::Manager::Get()->ReplicationSend(getUint32(homeId), getUint8(nodeId)));
+}

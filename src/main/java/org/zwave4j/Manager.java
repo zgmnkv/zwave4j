@@ -82,6 +82,8 @@ public class Manager {
 
     
     //Node
+	public native boolean replicationSend(long homeId, short nodeId);
+	
     public native boolean refreshNodeInfo(long homeId, short nodeId);
 
     public native boolean requestNodeState(long homeId, short nodeId);
