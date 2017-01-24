@@ -9,96 +9,96 @@ jobject getNotificationType(JNIEnv * env, OpenZWave::Notification::NotificationT
 	const char * name;
 	switch(ozwNotificationType)
 	{
-	case OpenZWave::Notification::Type_ValueAdded:
-		name = "VALUE_ADDED";
-		break;
-	case OpenZWave::Notification::Type_ValueRemoved:
-		name = "VALUE_REMOVED";
-		break;
-	case OpenZWave::Notification::Type_ValueChanged:
-		name = "VALUE_CHANGED";
-		break;
-	case OpenZWave::Notification::Type_ValueRefreshed:
-		name = "VALUE_REFRESHED";
-		break;
-	case OpenZWave::Notification::Type_Group:
-		name = "GROUP";
-		break;
-	case OpenZWave::Notification::Type_NodeNew:
-		name = "NODE_NEW";
-		break;
-	case OpenZWave::Notification::Type_NodeAdded:
-		name = "NODE_ADDED";
-		break;
-	case OpenZWave::Notification::Type_NodeRemoved:
-		name = "NODE_REMOVED";
-		break;
-	case OpenZWave::Notification::Type_NodeProtocolInfo:
-		name = "NODE_PROTOCOL_INFO";
-		break;
-	case OpenZWave::Notification::Type_NodeNaming:
-		name = "NODE_NAMING";
-		break;
-	case OpenZWave::Notification::Type_NodeEvent:
-		name = "NODE_EVENT";
-		break;
-	case OpenZWave::Notification::Type_PollingDisabled:
-		name = "POLLING_DISABLED";
-		break;
-	case OpenZWave::Notification::Type_PollingEnabled:
-		name = "POLLING_ENABLED";
-		break;
-	case OpenZWave::Notification::Type_SceneEvent:
-		name = "SCENE_EVENT";
-		break;
-	case OpenZWave::Notification::Type_CreateButton:
-		name = "CREATE_BUTTON";
-		break;
-	case OpenZWave::Notification::Type_DeleteButton:
-		name = "DELETE_BUTTON";
-		break;
-	case OpenZWave::Notification::Type_ButtonOn:
-		name = "BUTTON_ON";
-		break;
-	case OpenZWave::Notification::Type_ButtonOff:
-		name = "BUTTON_OFF";
-		break;
-	case OpenZWave::Notification::Type_DriverReady:
-		name = "DRIVER_READY";
-		break;
-	case OpenZWave::Notification::Type_DriverFailed:
-		name = "DRIVER_FAILED";
-		break;
-	case OpenZWave::Notification::Type_DriverReset:
-		name = "DRIVER_RESET";
-		break;
-	case OpenZWave::Notification::Type_EssentialNodeQueriesComplete:
-		name = "ESSENTIAL_NODE_QUERIES_COMPLETE";
-		break;
-	case OpenZWave::Notification::Type_NodeQueriesComplete:
-		name = "NODE_QUERIES_COMPLETE";
-		break;
-	case OpenZWave::Notification::Type_AwakeNodesQueried:
-		name = "AWAKE_NODES_QUERIED";
-		break;
-	case OpenZWave::Notification::Type_AllNodesQueriedSomeDead:
-		name = "ALL_NODES_QUERIED_SOME_DEAD";
-		break;
-	case OpenZWave::Notification::Type_AllNodesQueried:
-		name = "ALL_NODES_QUERIED";
-		break;
-	case OpenZWave::Notification::Type_Notification:
-		name = "NOTIFICATION";
-		break;
-	case OpenZWave::Notification::Type_ControllerCommand:
-    	name = "CONTROLLER_COMMAND";
-    	break;
-    case OpenZWave::Notification::Type_DriverRemoved:
-        name = "DRIVER_REMOVED";
-        break;
-    default:
-        name = "NOT_SUPPORTED";
-        break;
+		case OpenZWave::Notification::Type_ValueAdded:
+			name = "VALUE_ADDED";
+			break;
+		case OpenZWave::Notification::Type_ValueRemoved:
+			name = "VALUE_REMOVED";
+			break;
+		case OpenZWave::Notification::Type_ValueChanged:
+			name = "VALUE_CHANGED";
+			break;
+		case OpenZWave::Notification::Type_ValueRefreshed:
+			name = "VALUE_REFRESHED";
+			break;
+		case OpenZWave::Notification::Type_Group:
+			name = "GROUP";
+			break;
+		case OpenZWave::Notification::Type_NodeNew:
+			name = "NODE_NEW";
+			break;
+		case OpenZWave::Notification::Type_NodeAdded:
+			name = "NODE_ADDED";
+			break;
+		case OpenZWave::Notification::Type_NodeRemoved:
+			name = "NODE_REMOVED";
+			break;
+		case OpenZWave::Notification::Type_NodeProtocolInfo:
+			name = "NODE_PROTOCOL_INFO";
+			break;
+		case OpenZWave::Notification::Type_NodeNaming:
+			name = "NODE_NAMING";
+			break;
+		case OpenZWave::Notification::Type_NodeEvent:
+			name = "NODE_EVENT";
+			break;
+		case OpenZWave::Notification::Type_PollingDisabled:
+			name = "POLLING_DISABLED";
+			break;
+		case OpenZWave::Notification::Type_PollingEnabled:
+			name = "POLLING_ENABLED";
+			break;
+		case OpenZWave::Notification::Type_SceneEvent:
+			name = "SCENE_EVENT";
+			break;
+		case OpenZWave::Notification::Type_CreateButton:
+			name = "CREATE_BUTTON";
+			break;
+		case OpenZWave::Notification::Type_DeleteButton:
+			name = "DELETE_BUTTON";
+			break;
+		case OpenZWave::Notification::Type_ButtonOn:
+			name = "BUTTON_ON";
+			break;
+		case OpenZWave::Notification::Type_ButtonOff:
+			name = "BUTTON_OFF";
+			break;
+		case OpenZWave::Notification::Type_DriverReady:
+			name = "DRIVER_READY";
+			break;
+		case OpenZWave::Notification::Type_DriverFailed:
+			name = "DRIVER_FAILED";
+			break;
+		case OpenZWave::Notification::Type_DriverReset:
+			name = "DRIVER_RESET";
+			break;
+		case OpenZWave::Notification::Type_EssentialNodeQueriesComplete:
+			name = "ESSENTIAL_NODE_QUERIES_COMPLETE";
+			break;
+		case OpenZWave::Notification::Type_NodeQueriesComplete:
+			name = "NODE_QUERIES_COMPLETE";
+			break;
+		case OpenZWave::Notification::Type_AwakeNodesQueried:
+			name = "AWAKE_NODES_QUERIED";
+			break;
+		case OpenZWave::Notification::Type_AllNodesQueriedSomeDead:
+			name = "ALL_NODES_QUERIED_SOME_DEAD";
+			break;
+		case OpenZWave::Notification::Type_AllNodesQueried:
+			name = "ALL_NODES_QUERIED";
+			break;
+		case OpenZWave::Notification::Type_Notification:
+			name = "NOTIFICATION";
+			break;
+		case OpenZWave::Notification::Type_ControllerCommand:
+			name = "CONTROLLER_COMMAND";
+			break;
+		case OpenZWave::Notification::Type_DriverRemoved:
+			name = "DRIVER_REMOVED";
+			break;
+		default:
+			name = "NOT_SUPPORTED";
+			break;
 	}
 
 	jclass clazz = findClass(env, "org/zwave4j/NotificationType");
@@ -110,30 +110,30 @@ jobject getNotificationCode(JNIEnv * env, OpenZWave::Notification::NotificationC
 	const char * name;
 	switch(ozwNotificationCode)
 	{
-	case OpenZWave::Notification::Code_MsgComplete:
-		name = "MSG_COMPLETE";
-		break;
-	case OpenZWave::Notification::Code_Timeout:
-		name = "TIMEOUT";
-		break;
-	case OpenZWave::Notification::Code_NoOperation:
-		name = "NO_OPERATION";
-		break;
-	case OpenZWave::Notification::Code_Awake:
-		name = "AWAKE";
-		break;
-	case OpenZWave::Notification::Code_Sleep:
-		name = "SLEEP";
-		break;
-	case OpenZWave::Notification::Code_Dead:
-		name = "DEAD";
-		break;
-	case OpenZWave::Notification::Code_Alive:
-		name = "ALIVE";
-		break;
-	default:
-        name = "NOT_SUPPORTED";
-        break;
+		case OpenZWave::Notification::Code_MsgComplete:
+			name = "MSG_COMPLETE";
+			break;
+		case OpenZWave::Notification::Code_Timeout:
+			name = "TIMEOUT";
+			break;
+		case OpenZWave::Notification::Code_NoOperation:
+			name = "NO_OPERATION";
+			break;
+		case OpenZWave::Notification::Code_Awake:
+			name = "AWAKE";
+			break;
+		case OpenZWave::Notification::Code_Sleep:
+			name = "SLEEP";
+			break;
+		case OpenZWave::Notification::Code_Dead:
+			name = "DEAD";
+			break;
+		case OpenZWave::Notification::Code_Alive:
+			name = "ALIVE";
+			break;
+		default:
+			name = "NOT_SUPPORTED";
+			break;
 	}
 	jclass clazz = findClass(env, "org/zwave4j/NotificationCode");
 	return env->GetStaticObjectField(clazz, env->GetStaticFieldID(clazz, name, "Lorg/zwave4j/NotificationCode;"));
@@ -144,39 +144,39 @@ jobject getValueType(JNIEnv * env, OpenZWave::ValueID::ValueType ozwValueType)
 	const char * name;
 	switch(ozwValueType)
 	{
-	case OpenZWave::ValueID::ValueType_Bool:
-		name = "BOOL";
-		break;
-	case OpenZWave::ValueID::ValueType_Byte:
-		name = "BYTE";
-		break;
-	case OpenZWave::ValueID::ValueType_Decimal:
-		name = "DECIMAL";
-		break;
-	case OpenZWave::ValueID::ValueType_Int:
-		name = "INT";
-		break;
-	case OpenZWave::ValueID::ValueType_List:
-		name = "LIST";
-		break;
-	case OpenZWave::ValueID::ValueType_Schedule:
-		name = "SCHEDULE";
-		break;
-	case OpenZWave::ValueID::ValueType_Short:
-		name = "SHORT";
-		break;
-	case OpenZWave::ValueID::ValueType_String:
-		name = "STRING";
-		break;
-	case OpenZWave::ValueID::ValueType_Button:
-		name = "BUTTON";
-		break;
-	case OpenZWave::ValueID::ValueType_Raw:
-		name = "RAW";
-		break;
-    default:
-        name = "NOT_SUPPORTED";
-        break;
+		case OpenZWave::ValueID::ValueType_Bool:
+			name = "BOOL";
+			break;
+		case OpenZWave::ValueID::ValueType_Byte:
+			name = "BYTE";
+			break;
+		case OpenZWave::ValueID::ValueType_Decimal:
+			name = "DECIMAL";
+			break;
+		case OpenZWave::ValueID::ValueType_Int:
+			name = "INT";
+			break;
+		case OpenZWave::ValueID::ValueType_List:
+			name = "LIST";
+			break;
+		case OpenZWave::ValueID::ValueType_Schedule:
+			name = "SCHEDULE";
+			break;
+		case OpenZWave::ValueID::ValueType_Short:
+			name = "SHORT";
+			break;
+		case OpenZWave::ValueID::ValueType_String:
+			name = "STRING";
+			break;
+		case OpenZWave::ValueID::ValueType_Button:
+			name = "BUTTON";
+			break;
+		case OpenZWave::ValueID::ValueType_Raw:
+			name = "RAW";
+			break;
+		default:
+			name = "NOT_SUPPORTED";
+			break;
 	}
 	jclass clazz = findClass(env, "org/zwave4j/ValueType");
 	return env->GetStaticObjectField(clazz, env->GetStaticFieldID(clazz, name, "Lorg/zwave4j/ValueType;"));
@@ -187,24 +187,24 @@ jobject getValueGenre(JNIEnv * env, OpenZWave::ValueID::ValueGenre ozwValueGenre
 	const char * name;
 	switch(ozwValueGenre)
 	{
-	case OpenZWave::ValueID::ValueGenre_Basic:
-		name = "BASIC";
-		break;
-	case OpenZWave::ValueID::ValueGenre_User:
-		name = "USER";
-		break;
-	case OpenZWave::ValueID::ValueGenre_Config:
-		name = "CONFIG";
-		break;
-	case OpenZWave::ValueID::ValueGenre_System:
-		name = "SYSTEM";
-		break;
-	case OpenZWave::ValueID::ValueGenre_Count:
-		name = "COUNT";
-		break;
-    default:
-        name = "NOT_SUPPORTED";
-        break;
+		case OpenZWave::ValueID::ValueGenre_Basic:
+			name = "BASIC";
+			break;
+		case OpenZWave::ValueID::ValueGenre_User:
+			name = "USER";
+			break;
+		case OpenZWave::ValueID::ValueGenre_Config:
+			name = "CONFIG";
+			break;
+		case OpenZWave::ValueID::ValueGenre_System:
+			name = "SYSTEM";
+			break;
+		case OpenZWave::ValueID::ValueGenre_Count:
+			name = "COUNT";
+			break;
+		default:
+			name = "NOT_SUPPORTED";
+			break;
 	}
 	jclass clazz = findClass(env, "org/zwave4j/ValueGenre");
 	return env->GetStaticObjectField(clazz, env->GetStaticFieldID(clazz, name, "Lorg/zwave4j/ValueGenre;"));
@@ -215,18 +215,18 @@ jobject getControllerInterface(JNIEnv * env, OpenZWave::Driver::ControllerInterf
 	const char * name;
 	switch(ozwControllerInterface)
 	{
-    case OpenZWave::Driver::ControllerInterface_Unknown:
-		name = "UNKNOWN";
-		break;
-	case OpenZWave::Driver::ControllerInterface_Serial:
-		name = "SERIAL";
-		break;
-	case OpenZWave::Driver::ControllerInterface_Hid:
-		name = "HID";
-		break;
-    default:
-        name = "NOT_SUPPORTED";
-        break;
+		case OpenZWave::Driver::ControllerInterface_Unknown:
+			name = "UNKNOWN";
+			break;
+		case OpenZWave::Driver::ControllerInterface_Serial:
+			name = "SERIAL";
+			break;
+		case OpenZWave::Driver::ControllerInterface_Hid:
+			name = "HID";
+			break;
+		default:
+			name = "NOT_SUPPORTED";
+			break;
 	}
 	jclass clazz = findClass(env, "org/zwave4j/ControllerInterface");
 	return env->GetStaticObjectField(clazz, env->GetStaticFieldID(clazz, name, "Lorg/zwave4j/ControllerInterface;"));
@@ -237,42 +237,42 @@ jobject getControllerState(JNIEnv * env, OpenZWave::Driver::ControllerState ozwC
     const char * name;
 	switch(ozwControllerState)
 	{
-    case OpenZWave::Driver::ControllerState_Normal:
-		name = "NORMAL";
-		break;
-    case OpenZWave::Driver::ControllerState_Starting:
-		name = "STARTING";
-		break;		
-    case OpenZWave::Driver::ControllerState_Cancel:
-		name = "CANCEL";
-		break;				
-    case OpenZWave::Driver::ControllerState_Error:
-		name = "ERROR";
-		break;
-    case OpenZWave::Driver::ControllerState_Waiting:
-		name = "WAITING";
-		break;	
-    case OpenZWave::Driver::ControllerState_Sleeping:
-		name = "SLEEPING";
-		break;	
-    case OpenZWave::Driver::ControllerState_InProgress:
-		name = "IN_PROGRESS";
-		break;		
-    case OpenZWave::Driver::ControllerState_Completed:
-		name = "COMPLETED";
-		break;	   
-    case OpenZWave::Driver::ControllerState_Failed:
-		name = "FAILED";
-		break;		
-    case OpenZWave::Driver::ControllerState_NodeOK:
-		name = "NODE_OK";
-		break;			
-    case OpenZWave::Driver::ControllerState_NodeFailed:
-		name = "NODE_FAILED";
-		break;
-    default:
-        name = "NOT_SUPPORTED";
-        break;
+		case OpenZWave::Driver::ControllerState_Normal:
+			name = "NORMAL";
+			break;
+		case OpenZWave::Driver::ControllerState_Starting:
+			name = "STARTING";
+			break;		
+		case OpenZWave::Driver::ControllerState_Cancel:
+			name = "CANCEL";
+			break;				
+		case OpenZWave::Driver::ControllerState_Error:
+			name = "ERROR";
+			break;
+		case OpenZWave::Driver::ControllerState_Waiting:
+			name = "WAITING";
+			break;	
+		case OpenZWave::Driver::ControllerState_Sleeping:
+			name = "SLEEPING";
+			break;	
+		case OpenZWave::Driver::ControllerState_InProgress:
+			name = "IN_PROGRESS";
+			break;		
+		case OpenZWave::Driver::ControllerState_Completed:
+			name = "COMPLETED";
+			break;	   
+		case OpenZWave::Driver::ControllerState_Failed:
+			name = "FAILED";
+			break;		
+		case OpenZWave::Driver::ControllerState_NodeOK:
+			name = "NODE_OK";
+			break;			
+		case OpenZWave::Driver::ControllerState_NodeFailed:
+			name = "NODE_FAILED";
+			break;
+		default:
+			name = "NOT_SUPPORTED";
+			break;
 	}
 	jclass clazz = findClass(env, "org/zwave4j/ControllerState");
 	return env->GetStaticObjectField(clazz, env->GetStaticFieldID(clazz, name, "Lorg/zwave4j/ControllerState;"));
@@ -283,48 +283,48 @@ jobject getControllerError(JNIEnv * env, OpenZWave::Driver::ControllerError ozwC
     const char * name;
 	switch(ozwControllerError)
 	{
-    case OpenZWave::Driver::ControllerError_None:
-		name = "NONE";
-		break;
-    case OpenZWave::Driver::ControllerError_ButtonNotFound:
-		name = "BUTTON_NOT_FOUND";
-		break;			
-    case OpenZWave::Driver::ControllerError_NodeNotFound:
-		name = "NODE_NOT_FOUND";
-		break;			
-    case OpenZWave::Driver::ControllerError_NotBridge:
-		name = "NOT_BRIDGE";
-		break;	
-    case OpenZWave::Driver::ControllerError_NotSUC:
-		name = "NOT_SUC";
-		break;
-    case OpenZWave::Driver::ControllerError_NotSecondary:
-		name = "NOT_SECONDARY";
-		break;
-    case OpenZWave::Driver::ControllerError_NotPrimary:
-		name = "NOT_PRIMARY";
-		break;
-    case OpenZWave::Driver::ControllerError_IsPrimary:
-		name = "IS_PRIMARY";
-		break;
-    case OpenZWave::Driver::ControllerError_NotFound:
-		name = "NOT_FOUND";
-		break;
-    case OpenZWave::Driver::ControllerError_Busy:
-		name = "BUSY";
-		break;
-    case OpenZWave::Driver::ControllerError_Failed:
-		name = "FAILED";
-		break;
-    case OpenZWave::Driver::ControllerError_Disabled:
-		name = "DISABLED";
-		break;
-    case OpenZWave::Driver::ControllerError_Overflow:
-		name = "OVERFLOW";
-		break;
-    default:
-        name = "NOT_SUPPORTED";
-        break;
+		case OpenZWave::Driver::ControllerError_None:
+			name = "NONE";
+			break;
+		case OpenZWave::Driver::ControllerError_ButtonNotFound:
+			name = "BUTTON_NOT_FOUND";
+			break;			
+		case OpenZWave::Driver::ControllerError_NodeNotFound:
+			name = "NODE_NOT_FOUND";
+			break;			
+		case OpenZWave::Driver::ControllerError_NotBridge:
+			name = "NOT_BRIDGE";
+			break;	
+		case OpenZWave::Driver::ControllerError_NotSUC:
+			name = "NOT_SUC";
+			break;
+		case OpenZWave::Driver::ControllerError_NotSecondary:
+			name = "NOT_SECONDARY";
+			break;
+		case OpenZWave::Driver::ControllerError_NotPrimary:
+			name = "NOT_PRIMARY";
+			break;
+		case OpenZWave::Driver::ControllerError_IsPrimary:
+			name = "IS_PRIMARY";
+			break;
+		case OpenZWave::Driver::ControllerError_NotFound:
+			name = "NOT_FOUND";
+			break;
+		case OpenZWave::Driver::ControllerError_Busy:
+			name = "BUSY";
+			break;
+		case OpenZWave::Driver::ControllerError_Failed:
+			name = "FAILED";
+			break;
+		case OpenZWave::Driver::ControllerError_Disabled:
+			name = "DISABLED";
+			break;
+		case OpenZWave::Driver::ControllerError_Overflow:
+			name = "OVERFLOW";
+			break;
+		default:
+			name = "NOT_SUPPORTED";
+			break;
 	}
 	jclass clazz = findClass(env, "org/zwave4j/ControllerError");
 	return env->GetStaticObjectField(clazz, env->GetStaticFieldID(clazz, name, "Lorg/zwave4j/ControllerError;"));
@@ -858,6 +858,39 @@ JNIEXPORT jboolean JNICALL Java_org_zwave4j_Manager_requestNodeDynamic
   (JNIEnv * env, jobject object, jlong homeId, jshort nodeId)
 {
 	return getJboolean(OpenZWave::Manager::Get()->RequestNodeDynamic(getUint32(homeId), getUint8(nodeId)));
+}
+
+/*
+ * Class:     org_zwave4j_Manager
+ * Method:    requestNodeNeighborUpdate
+ * Signature: (JS)Z
+ */
+JNIEXPORT jboolean JNICALL Java_org_zwave4j_Manager_requestNodeNeighborUpdate
+  (JNIEnv * env, jobject object, jlong homeId, jshort nodeId)
+{
+	return getJboolean(OpenZWave::Manager::Get()->RequestNodeNeighborUpdate(getUint32(homeId), getUint8(nodeId)));
+}
+
+/*
+ * Class:     org_zwave4j_Manager
+ * Method:    DeleteAllReturnRoutes
+ * Signature: (JS)Z
+ */
+JNIEXPORT jboolean JNICALL Java_org_zwave4j_Manager_deleteAllReturnRoutes
+  (JNIEnv * env, jobject object, jlong homeId, jshort nodeId)
+{
+	return getJboolean(OpenZWave::Manager::Get()->DeleteAllReturnRoutes(getUint32(homeId), getUint8(nodeId)));
+}
+
+/*
+ * Class:     org_zwave4j_Manager
+ * Method:    AssignReturnRoute
+ * Signature: (JS)Z
+ */
+JNIEXPORT jboolean JNICALL Java_org_zwave4j_Manager_assignReturnRoute
+  (JNIEnv * env, jobject object, jlong homeId, jshort nodeId)
+{
+	return getJboolean(OpenZWave::Manager::Get()->AssignReturnRoute(getUint32(homeId), getUint8(nodeId)));
 }
 
 /*
@@ -1454,6 +1487,7 @@ JNIEXPORT jboolean JNICALL Java_org_zwave4j_Manager_getValueAsBool
 {
 	bool ozwValue;
 	jboolean result = getJboolean(OpenZWave::Manager::Get()->GetValueAsBool(getOzwValueId(env, valueId), &ozwValue));
+			
 	env->CallVoidMethod(
 		value,
 		env->GetMethodID(findClass(env, "java/util/concurrent/atomic/AtomicReference"), "set", "(Ljava/lang/Object;)V"),
@@ -1586,10 +1620,16 @@ JNIEXPORT jboolean JNICALL Java_org_zwave4j_Manager_getValueAsRaw
 
 	jshortArray valueArray = env->NewShortArray(getJsize(length));
 	jshort * valueElements = env->GetShortArrayElements(valueArray, NULL);
-	for (uint8 i = 0; i < length; ++i)
+	
+	// If read was successful then extract shorts from result.
+	if (result == JNI_TRUE)
 	{
-	    valueElements[i] = getJshort(ozwValue[i]);
+		for (uint8 i = 0; i < length; ++i)
+		{
+			valueElements[i] = getJshort(ozwValue[i]);
+		}
 	}
+	
 	env->ReleaseShortArrayElements(valueArray, valueElements, 0);
 
 	delete [] ozwValue;
@@ -2125,7 +2165,12 @@ JNIEXPORT void JNICALL Java_org_zwave4j_Manager_addWatcher
         env->NewGlobalRef(notificationWatcher),
         env->NewGlobalRef(context)
     );
-    notificationWatchers[std::pair<jobject, jobject>(notificationWatcher, context)] = pair;
+	
+	// This key is deallocated after this scope closes causing numerous issues.
+	//notificationWatchers[std::pair<jobject, jobject>(notificationWatcher, context)] = pair;
+
+	notificationWatchers[*pair] = pair;
+	
     OpenZWave::Manager::Get()->AddWatcher(onNotification, pair);
 }
 
@@ -2138,9 +2183,15 @@ JNIEXPORT void JNICALL Java_org_zwave4j_Manager_removeWatcher
   (JNIEnv * env, jobject object, jobject notificationWatcher, jobject context)
 {
     std::pair<jobject, jobject> * pair = notificationWatchers[std::pair<jobject, jobject>(notificationWatcher, context)];
-    OpenZWave::Manager::Get()->RemoveWatcher(onNotification, pair);
-    env->DeleteGlobalRef(pair->first);
-    env->DeleteGlobalRef(pair->second);
+	notificationWatchers.erase(std::pair<jobject, jobject>(notificationWatcher, context));
+	
+	if (pair->first != NULL)
+		env->DeleteGlobalRef(pair->first);
+	
+	if (pair->second != NULL)
+		env->DeleteGlobalRef(pair->second);
+
+	OpenZWave::Manager::Get()->RemoveWatcher(onNotification, pair);
     delete pair;
 }
 
@@ -2164,6 +2215,36 @@ JNIEXPORT void JNICALL Java_org_zwave4j_Manager_softReset
   (JNIEnv * env, jobject object, jlong homeId)
 {
     OpenZWave::Manager::Get()->SoftReset(getUint32(homeId));
+}
+
+JNIEXPORT jboolean JNICALL Java_org_zwave4j_Manager_addNode
+  (JNIEnv * env, jobject object, jlong homeId, jboolean secureMode)
+{
+    return getJboolean(OpenZWave::Manager::Get()->AddNode(getUint32(homeId), getBool(secureMode)));
+}
+
+JNIEXPORT jboolean JNICALL Java_org_zwave4j_Manager_removeNode
+  (JNIEnv * env, jobject object, jlong homeId)
+{
+    return getJboolean(OpenZWave::Manager::Get()->RemoveNode(getUint32(homeId)));
+}
+
+JNIEXPORT jboolean JNICALL Java_org_zwave4j_Manager_removeFailedNode
+  (JNIEnv * env, jobject object, jlong homeId, jshort nodeId)
+{
+    return getJboolean(OpenZWave::Manager::Get()->RemoveFailedNode(getUint32(homeId), getInt8(nodeId)));
+}
+
+JNIEXPORT jboolean JNICALL Java_org_zwave4j_Manager_hasNodeFailed
+  (JNIEnv * env, jobject object, jlong homeId, jshort nodeId)
+{
+    return getJboolean(OpenZWave::Manager::Get()->HasNodeFailed(getUint32(homeId), getInt8(nodeId)));
+}
+
+JNIEXPORT jboolean JNICALL Java_org_zwave4j_Manager_replaceFailedNode
+  (JNIEnv * env, jobject object, jlong homeId, jshort nodeId)
+{
+    return getJboolean(OpenZWave::Manager::Get()->ReplaceFailedNode(getUint32(homeId), getInt8(nodeId)));
 }
 
 /*
@@ -2977,4 +3058,15 @@ JNIEXPORT void JNICALL Java_org_zwave4j_Manager_getNodeStatistics
             getCommandClassData(env, &*it)
         );
     }
+}
+
+/*
+ * Class:     org_zwave4j_Manager
+ * Method:    pressButton
+ * Signature: (Lorg/zwave4j/ValueId;)Z
+ */
+JNIEXPORT jboolean JNICALL Java_org_zwave4j_Manager_replicationSend
+  (JNIEnv * env, jobject object, jlong homeId, jshort nodeId)
+{
+	return getJboolean(OpenZWave::Manager::Get()->ReplicationSend(getUint32(homeId), getUint8(nodeId)));
 }
