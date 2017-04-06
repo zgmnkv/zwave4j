@@ -1113,6 +1113,56 @@ JNIEXPORT void JNICALL Java_org_zwave4j_Manager_setNodeManufacturerName
 
 /*
  * Class:     org_zwave4j_Manager
+ * Method:    addAssociation
+ */
+JNIEXPORT void JNICALL Java_org_zwave4j_Manager_addAssociation
+  (JNIEnv * env, jobject object, jlong homeId, jshort nodeId, jshort groupIdx, jshort targetNodeId)
+{
+    OpenZWave::Manager::Get()->AddAssociation( homeId, nodeId, groupIdx, targetNodeId );
+}
+
+/*
+ * Class:     org_zwave4j_Manager
+ * Method:    testNetworkNode
+ */
+JNIEXPORT void JNICALL Java_org_zwave4j_Manager_testNetworkNode
+  (JNIEnv * env, jobject object, jlong homeId, jshort nodeId, jlong count)
+{
+    OpenZWave::Manager::Get()->TestNetworkNode(getUint32(homeId), getUint8(nodeId), getUint32(count));
+}
+
+/*
+ * Class:     org_zwave4j_Manager
+ * Method:    testNetwork
+ */
+JNIEXPORT void JNICALL Java_org_zwave4j_Manager_testNetwork
+  (JNIEnv * env, jobject object, jlong homeId, jlong count)
+{
+    OpenZWave::Manager::Get()->TestNetwork(getUint32(homeId), getUint32(count));
+}
+
+/*
+ * Class:     org_zwave4j_Manager
+ * Method:    healNetworkNode
+ */
+JNIEXPORT void JNICALL Java_org_zwave4j_Manager_healNetworkNode
+  (JNIEnv * env, jobject object, jlong homeId, jshort nodeId, jboolean doRR)
+{
+    OpenZWave::Manager::Get()->HealNetworkNode(getUint32(homeId), getUint8(nodeId), getBool(doRR));
+}
+
+/*
+ * Class:     org_zwave4j_Manager
+ * Method:    healNetwork
+ */
+JNIEXPORT void JNICALL Java_org_zwave4j_Manager_healNetwork
+  (JNIEnv * env, jobject object, jlong homeId, jboolean doRR)
+{
+    OpenZWave::Manager::Get()->HealNetwork(getUint32(homeId), getBool(doRR));
+}
+
+/*
+ * Class:     org_zwave4j_Manager
  * Method:    setNodeProductName
  * Signature: (JSLjava/lang/String;)V
  */

@@ -105,6 +105,12 @@ public class Manager {
 
     public native short getNodeBasic(long homeId, short nodeId);
 
+    public native void addAssociation(long homeId, short nodeId, short groupIdx, short targetNodeId);
+    public native void testNetworkNode(long homeId, short nodeId, long count);
+    public native void testNetwork(long homeId, long count);
+    public native void healNetworkNode(long homeId, short nodeId, boolean doRR);
+    public native void healNetwork(long homeId, boolean doRR);
+
     public native short getNodeGeneric(long homeId, short nodeId);
 
     public native short getNodeSpecific(long homeId, short nodeId);
